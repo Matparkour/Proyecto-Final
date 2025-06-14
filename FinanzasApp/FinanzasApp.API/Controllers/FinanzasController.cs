@@ -14,7 +14,7 @@ namespace FinanzasApp.API.Controllers
         public FinanzasController(AppDbContext context)
         {
             _context = context;
-        } 
+        }
 
         [HttpGet]
         public async Task<IActionResult> Get()
