@@ -8,8 +8,9 @@ namespace FinanzasApp.Desktop
         public Form1()
         {
             InitializeComponent();
-            
-            
+            cbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
+
+
         }
 
         private async void Form1_Load(object sender, EventArgs e)
