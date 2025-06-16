@@ -1,5 +1,6 @@
 using FinanzasApp.API.Models;
 using System.Net.Http.Json;
+using FinanzasApp.Desktop;
 
 namespace FinanzasApp.Desktop
 {
@@ -8,26 +9,26 @@ namespace FinanzasApp.Desktop
         public Form1()
         {
             InitializeComponent();
-            cbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
+            //cbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
 
 
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            // Aquí cargamos las opciones del ComboBox
-            
 
-            cbTipo.Items.Clear();
-            cbTipo.Items.Add("Ingreso");
-            cbTipo.Items.Add("Gasto");
-            cbTipo.SelectedIndex = -1; // para que no haya nada seleccionado al cargar
+
+
+            //cbTipo.Items.Clear();
+            //cbTipo.Items.Add("Ingreso");
+            //cbTipo.Items.Add("Gasto");
+            //cbTipo.SelectedIndex = -1; 
 
             await CargarMovimientos();
 
         }
 
-        private async void btnGuardar_Click(object sender, EventArgs e)
+        /*private async void btnGuardar_Click(object sender, EventArgs e)
         {
             // Validar que txtMonto tenga un número válido
             if (!decimal.TryParse(txtMonto.Text, out decimal monto))
@@ -63,7 +64,7 @@ namespace FinanzasApp.Desktop
             {
                 MessageBox.Show("Error al guardar el movimiento.");
             }
-        }
+        }*/
         public async Task<bool> GuardarMovimientoAsync(Movimiento movimiento)
         {
             using (HttpClient client = new HttpClient())
@@ -76,19 +77,19 @@ namespace FinanzasApp.Desktop
             }
         }
 
-        private void LimpiarCampos()
-        {
-            txtDescripcion.Text = "";
-            txtMonto.Text = "";
-            cbTipo.SelectedIndex = -1;
-            dtpFecha.Value = DateTime.Now;
-        }
+        /* private void LimpiarCampos()
+         {
+             txtDescripcion.Text = "";
+             txtMonto.Text = "";
+             cbTipo.SelectedIndex = -1;
+             dtpFecha.Value = DateTime.Now;
+         */
 
         public async Task<List<Movimiento>> ObtenerMovimientosAsync()
         {
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:7092/"); 
+                client.BaseAddress = new Uri("https://localhost:7092/");
                 HttpResponseMessage response = await client.GetAsync("api/finanzas");
 
                 if (response.IsSuccessStatusCode)
@@ -106,9 +107,26 @@ namespace FinanzasApp.Desktop
         private async Task CargarMovimientos()
         {
             var lista = await ObtenerMovimientosAsync();
-           
+
             dgvMovimientos.AutoGenerateColumns = true;
             dgvMovimientos.DataSource = lista;
+        }
+
+        private async void btnAgregar_Click(object sender, EventArgs e)
+        {
+            var formAgregar = new AgregarMovimientosForm();
+            formAgregar.FormClosed += async (s, args) => await CargarMovimientos();
+            formAgregar.ShowDialog();
+        }
+
+        private async void btnActualizar_Click(object sender, EventArgs e)
+        {
+            await CargarMovimientos();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -28,150 +28,137 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblTipo = new Label();
-            cbTipo = new ComboBox();
-            lblDescripcion = new Label();
-            txtDescripcion = new TextBox();
-            lblMonto = new Label();
-            txtMonto = new TextBox();
-            lblFecha = new Label();
-            dtpFecha = new DateTimePicker();
-            btnGuardar = new Button();
             dgvMovimientos = new DataGridView();
             label1 = new Label();
+            groupBox1 = new GroupBox();
+            button3 = new Button();
+            btnActualizar = new Button();
+            btnAgregar = new Button();
+            groupBox2 = new GroupBox();
+            btnBorrar = new Button();
+            btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvMovimientos).BeginInit();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
-            // 
-            // lblTipo
-            // 
-            lblTipo.AutoSize = true;
-            lblTipo.Location = new Point(94, 91);
-            lblTipo.Name = "lblTipo";
-            lblTipo.Size = new Size(33, 15);
-            lblTipo.TabIndex = 0;
-            lblTipo.Text = "Tipo:";
-            // 
-            // cbTipo
-            // 
-            cbTipo.FormattingEnabled = true;
-            cbTipo.Items.AddRange(new object[] { "Ingreso", "Gasto" });
-            cbTipo.Location = new Point(158, 88);
-            cbTipo.Name = "cbTipo";
-            cbTipo.Size = new Size(121, 23);
-            cbTipo.TabIndex = 1;
-            // 
-            // lblDescripcion
-            // 
-            lblDescripcion.AutoSize = true;
-            lblDescripcion.Location = new Point(55, 135);
-            lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new Size(72, 15);
-            lblDescripcion.TabIndex = 2;
-            lblDescripcion.Text = "Descripción:";
-            // 
-            // txtDescripcion
-            // 
-            txtDescripcion.Location = new Point(158, 132);
-            txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(192, 23);
-            txtDescripcion.TabIndex = 3;
-            // 
-            // lblMonto
-            // 
-            lblMonto.AutoSize = true;
-            lblMonto.Location = new Point(81, 180);
-            lblMonto.Name = "lblMonto";
-            lblMonto.Size = new Size(46, 15);
-            lblMonto.TabIndex = 4;
-            lblMonto.Text = "Monto:";
-            // 
-            // txtMonto
-            // 
-            txtMonto.Location = new Point(158, 177);
-            txtMonto.Name = "txtMonto";
-            txtMonto.Size = new Size(160, 23);
-            txtMonto.TabIndex = 5;
-            // 
-            // lblFecha
-            // 
-            lblFecha.AutoSize = true;
-            lblFecha.Location = new Point(81, 224);
-            lblFecha.Name = "lblFecha";
-            lblFecha.Size = new Size(41, 15);
-            lblFecha.TabIndex = 6;
-            lblFecha.Text = "Fecha:";
-            // 
-            // dtpFecha
-            // 
-            dtpFecha.Location = new Point(158, 216);
-            dtpFecha.Name = "dtpFecha";
-            dtpFecha.Size = new Size(200, 23);
-            dtpFecha.TabIndex = 7;
-            // 
-            // btnGuardar
-            // 
-            btnGuardar.Location = new Point(204, 269);
-            btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(75, 23);
-            btnGuardar.TabIndex = 8;
-            btnGuardar.Text = "Guardar";
-            btnGuardar.UseVisualStyleBackColor = true;
-            btnGuardar.Click += btnGuardar_Click;
             // 
             // dgvMovimientos
             // 
             dgvMovimientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMovimientos.Location = new Point(432, 88);
+            dgvMovimientos.Location = new Point(6, 22);
             dgvMovimientos.Name = "dgvMovimientos";
-            dgvMovimientos.Size = new Size(543, 299);
+            dgvMovimientos.Size = new Size(611, 335);
             dgvMovimientos.TabIndex = 9;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(354, 20);
+            label1.Font = new Font("Adobe Fan Heiti Std B", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(219, 18);
             label1.Name = "label1";
-            label1.Size = new Size(145, 15);
+            label1.Size = new Size(357, 36);
             label1.TabIndex = 10;
             label1.Text = "Administrador de finanzas";
             label1.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(dgvMovimientos);
+            groupBox1.Location = new Point(147, 96);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(623, 363);
+            groupBox1.TabIndex = 11;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Data";
+            // 
+            // button3
+            // 
+            button3.Location = new Point(17, 115);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 23);
+            button3.TabIndex = 12;
+            button3.Text = "Informe";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // btnActualizar
+            // 
+            btnActualizar.Location = new Point(17, 67);
+            btnActualizar.Name = "btnActualizar";
+            btnActualizar.Size = new Size(75, 23);
+            btnActualizar.TabIndex = 11;
+            btnActualizar.Text = "Actualizar";
+            btnActualizar.UseVisualStyleBackColor = true;
+            btnActualizar.Click += btnActualizar_Click;
+            // 
+            // btnAgregar
+            // 
+            btnAgregar.Location = new Point(17, 22);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(75, 23);
+            btnAgregar.TabIndex = 10;
+            btnAgregar.Text = "Agregar";
+            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(btnBorrar);
+            groupBox2.Controls.Add(btnSalir);
+            groupBox2.Controls.Add(btnAgregar);
+            groupBox2.Controls.Add(button3);
+            groupBox2.Controls.Add(btnActualizar);
+            groupBox2.Location = new Point(12, 96);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(111, 363);
+            groupBox2.TabIndex = 13;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Acciones";
+            // 
+            // btnBorrar
+            // 
+            btnBorrar.Location = new Point(17, 164);
+            btnBorrar.Name = "btnBorrar";
+            btnBorrar.Size = new Size(75, 23);
+            btnBorrar.TabIndex = 14;
+            btnBorrar.Text = "Borrar";
+            btnBorrar.UseVisualStyleBackColor = true;
+            // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(17, 308);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(75, 23);
+            btnSalir.TabIndex = 13;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1028, 450);
+            BackColor = Color.LightSteelBlue;
+            ClientSize = new Size(797, 483);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
             Controls.Add(label1);
-            Controls.Add(dgvMovimientos);
-            Controls.Add(btnGuardar);
-            Controls.Add(dtpFecha);
-            Controls.Add(lblFecha);
-            Controls.Add(txtMonto);
-            Controls.Add(lblMonto);
-            Controls.Add(txtDescripcion);
-            Controls.Add(lblDescripcion);
-            Controls.Add(cbTipo);
-            Controls.Add(lblTipo);
             Name = "Form1";
             Text = "Administrador de Finanzas";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dgvMovimientos).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label lblTipo;
-        private ComboBox cbTipo;
-        private Label lblDescripcion;
-        private TextBox txtDescripcion;
-        private Label lblMonto;
-        private TextBox txtMonto;
-        private Label lblFecha;
-        private DateTimePicker dtpFecha;
-        private Button btnGuardar;
         private DataGridView dgvMovimientos;
         private Label label1;
+        private GroupBox groupBox1;
+        private Button button3;
+        private Button btnActualizar;
+        private Button btnAgregar;
+        private GroupBox groupBox2;
+        private Button btnBorrar;
+        private Button btnSalir;
     }
 }
