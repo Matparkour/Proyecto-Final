@@ -110,6 +110,7 @@ namespace FinanzasApp.Desktop
 
             dgvMovimientos.AutoGenerateColumns = true;
             dgvMovimientos.DataSource = lista;
+            dgvMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private async void btnAgregar_Click(object sender, EventArgs e)
@@ -127,6 +128,17 @@ namespace FinanzasApp.Desktop
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnInforme_Click(object sender, EventArgs e)
+        {
+            var form = new InformeForm();
+            form.ShowDialog();
+        }
+
+        private void dgvMovimientos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

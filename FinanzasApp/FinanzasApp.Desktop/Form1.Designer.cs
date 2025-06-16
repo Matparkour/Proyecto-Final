@@ -32,7 +32,7 @@
             dgvMovimientos = new DataGridView();
             label1 = new Label();
             groupBox1 = new GroupBox();
-            button3 = new Button();
+            btnInforme = new Button();
             btnActualizar = new Button();
             btnAgregar = new Button();
             groupBox2 = new GroupBox();
@@ -50,6 +50,7 @@
             dgvMovimientos.Name = "dgvMovimientos";
             dgvMovimientos.Size = new Size(611, 335);
             dgvMovimientos.TabIndex = 9;
+            dgvMovimientos.CellContentClick += dgvMovimientos_CellContentClick;
             // 
             // label1
             // 
@@ -71,14 +72,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Data";
             // 
-            // button3
+            // btnInforme
             // 
-            button3.Location = new Point(17, 115);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 12;
-            button3.Text = "Informe";
-            button3.UseVisualStyleBackColor = true;
+            btnInforme.Location = new Point(17, 115);
+            btnInforme.Name = "btnInforme";
+            btnInforme.Size = new Size(75, 23);
+            btnInforme.TabIndex = 12;
+            btnInforme.Text = "Informe";
+            btnInforme.UseVisualStyleBackColor = true;
+            btnInforme.Click += btnInforme_Click;
             // 
             // btnActualizar
             // 
@@ -105,7 +107,7 @@
             groupBox2.Controls.Add(btnBorrar);
             groupBox2.Controls.Add(btnSalir);
             groupBox2.Controls.Add(btnAgregar);
-            groupBox2.Controls.Add(button3);
+            groupBox2.Controls.Add(btnInforme);
             groupBox2.Controls.Add(btnActualizar);
             groupBox2.Location = new Point(12, 96);
             groupBox2.Name = "groupBox2";
@@ -156,7 +158,7 @@
         private DataGridView dgvMovimientos;
         private Label label1;
         private GroupBox groupBox1;
-        private Button button3;
+        private Button btnInforme;
         private Button btnActualizar;
         private Button btnAgregar;
         private GroupBox groupBox2;
