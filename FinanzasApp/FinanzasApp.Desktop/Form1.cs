@@ -110,7 +110,7 @@ namespace FinanzasApp.Desktop
 
             dgvMovimientos.AutoGenerateColumns = true;
             dgvMovimientos.DataSource = lista;
-            dgvMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// agregue esta linea para poder arreglar el problema de la data grid view
         }
 
         private async void btnAgregar_Click(object sender, EventArgs e)
