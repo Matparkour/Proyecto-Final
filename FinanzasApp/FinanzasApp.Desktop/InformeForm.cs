@@ -36,7 +36,7 @@ namespace FinanzasApp.Desktop
         private async void btnGenerar_Click(object sender, EventArgs e)
         {
             int mesSeleccionado = cbMes.SelectedIndex + 1;
-            int anioSeleccionado = (int)nudAño.Value;
+            int añoSeleccionado = (int)nudAño.Value;
 
             List<Movimiento> movimientos;
 
@@ -48,7 +48,7 @@ namespace FinanzasApp.Desktop
             }
 
             var movimientosFiltrados = movimientos
-                .Where(m => m.Fecha.Month == mesSeleccionado && m.Fecha.Year == anioSeleccionado)
+                .Where(m => m.Fecha.Month == mesSeleccionado && m.Fecha.Year == añoSeleccionado)
                 .ToList();
 
             decimal totalIngresos = movimientosFiltrados
@@ -61,7 +61,7 @@ namespace FinanzasApp.Desktop
 
             decimal balance = totalIngresos - totalGastos;
 
-            lblResultado.Text = $"Informe de {cbMes.SelectedItem} {anioSeleccionado}\n\n" +
+            lblResultado.Text = $"Informe de {cbMes.SelectedItem} {añoSeleccionado}\n\n" +
                                 $"✔ Total Ingresos: {totalIngresos:C}\n" +
                                 $"❌ Total Gastos: {totalGastos:C}\n" +
                                 $"💰 Balance: {balance:C}";

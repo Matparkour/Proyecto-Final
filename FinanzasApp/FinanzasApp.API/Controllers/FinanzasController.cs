@@ -34,5 +34,19 @@ namespace FinanzasApp.API.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = movimiento.Id }, movimiento);
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMovimiento(int id)
+        {
+            var movimiento = await _context.Movimientos.FindAsync(id);
+            if (movimiento == null)
+            {
+                return NotFound();
+            }
+
+            _context.Movimientos.Remove(movimiento);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

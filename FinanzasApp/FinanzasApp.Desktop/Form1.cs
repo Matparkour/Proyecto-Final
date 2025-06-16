@@ -140,5 +140,41 @@ namespace FinanzasApp.Desktop
         {
 
         }
+
+        public async Task<bool> EliminarMovimientoAsync(int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7092/");
+                HttpResponseMessage response = await client.DeleteAsync($"api/finanzas/{id}");
+                return response.IsSuccessStatusCode;
+            }
+        }
+
+        private async void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgvMovimientos.CurrentRow == null)
+            {
+                MessageBox.Show("Selecciona un movimiento para borrar.");
+                return;
+            }
+
+            var confirmResult = MessageBox.Show("¿Estás seguro que querés borrar este movimiento?", "Confirmar borrado", MessageBoxButtons.YesNo);
+            if (confirmResult != DialogResult.Yes) return;
+
+            var movimiento = (Movimiento)dgvMovimientos.CurrentRow.DataBoundItem;
+
+            bool borrado = await EliminarMovimientoAsync(movimiento.Id);
+
+            if (borrado)
+            {
+                MessageBox.Show("Movimiento borrado correctamente.");
+                await CargarMovimientos(); // refresca el grid
+            }
+            else
+            {
+                MessageBox.Show("Error al borrar el movimiento.");
+            }
+        }
     }
 }
