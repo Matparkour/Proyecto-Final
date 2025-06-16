@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarMovimientosForm));
             cbTipo = new ComboBox();
             txtDescripcion = new TextBox();
             dtpFecha = new DateTimePicker();
@@ -141,6 +142,7 @@
             Controls.Add(dtpFecha);
             Controls.Add(txtDescripcion);
             Controls.Add(cbTipo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AgregarMovimientosForm";
             Text = "AgregarMovimientosForm";
             Load += AgregarMovimientosForm_Load;
