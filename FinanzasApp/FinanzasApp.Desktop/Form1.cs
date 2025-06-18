@@ -13,10 +13,7 @@ namespace FinanzasApp.Desktop
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-
-
-            await CargarMovimientos();
-
+            await CargarMovimientos();           
         }
         public async Task<bool> GuardarMovimientoAsync(Movimiento movimiento)
         {
@@ -28,7 +25,7 @@ namespace FinanzasApp.Desktop
 
                 return response.IsSuccessStatusCode;
             }
-        }      
+        }
 
         public async Task<List<Movimiento>> ObtenerMovimientosAsync()
         {
@@ -57,12 +54,26 @@ namespace FinanzasApp.Desktop
             dgvMovimientos.DataSource = lista;
             dgvMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// agregue esta linea para poder arreglar el problema de la data grid view
 
-            //columnas que no quiero editar
-            //if (dgvMovimientos.Columns["Id"] != null)
-              //  dgvMovimientos.Columns["Id"].ReadOnly = true;
+            // Reemplazar la columna "Tipo" por un ComboBox si aún no es uno
+            if (dgvMovimientos.Columns["Tipo"] is DataGridViewTextBoxColumn)
+            {
+                int index = dgvMovimientos.Columns["Tipo"].Index;
 
-            //if (dgvMovimientos.Columns["Fecha"] != null)
-              //  dgvMovimientos.Columns["Fecha"].ReadOnly = true;
+                // Crear la nueva columna como ComboBox
+                var comboCol = new DataGridViewComboBoxColumn
+                {
+                    DataPropertyName = "Tipo",
+                    Name = "Tipo",
+                    HeaderText = "Tipo",
+                    Items = { "Ingreso", "Gasto" },
+                    DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton
+                };
+
+                // Reemplazar
+                dgvMovimientos.Columns.RemoveAt(index);
+                dgvMovimientos.Columns.Insert(index, comboCol);
+            }
+
         }
 
         private async void btnAgregar_Click(object sender, EventArgs e)
@@ -127,6 +138,37 @@ namespace FinanzasApp.Desktop
             {
                 MessageBox.Show("Error al borrar el movimiento.");
             }
+        }
+
+        private async void btnGuardar_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow fila in dgvMovimientos.Rows)
+            {
+                if (fila.IsNewRow) continue;
+
+                var movimiento = new Movimiento
+                {
+                    Id = Convert.ToInt32(fila.Cells["Id"].Value),
+                    Descripcion = fila.Cells["Descripcion"].Value?.ToString(),
+                    Tipo = fila.Cells["Tipo"].Value?.ToString(),
+                    Monto = Convert.ToDecimal(fila.Cells["Monto"].Value),
+                    Fecha = Convert.ToDateTime(fila.Cells["Fecha"].Value)
+                };
+
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:7092/");
+                    var response = await client.PutAsJsonAsync($"api/finanzas/{movimiento.Id}", movimiento);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show($"Error al guardar el movimiento con ID {movimiento.Id}");
+                    }
+                }
+            }
+
+            MessageBox.Show("Cambios guardados correctamente.");
+            await CargarMovimientos();          
         }
     }
 }

@@ -11,5 +11,7 @@ namespace FinanzasApp.API.Data
         }
 
         public DbSet<Movimiento> Movimientos { get; set; }
+
+
     }
 }

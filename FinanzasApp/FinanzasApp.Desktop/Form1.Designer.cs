@@ -38,6 +38,7 @@
             groupBox2 = new GroupBox();
             btnBorrar = new Button();
             btnSalir = new Button();
+            btnGuardar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvMovimientos).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -45,15 +46,13 @@
             // 
             // dgvMovimientos
             // 
+            dgvMovimientos.AllowUserToAddRows = false;
             dgvMovimientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMovimientos.Location = new Point(6, 22);
             dgvMovimientos.Name = "dgvMovimientos";
             dgvMovimientos.Size = new Size(611, 335);
             dgvMovimientos.TabIndex = 9;
             dgvMovimientos.CellContentClick += dgvMovimientos_CellContentClick;
-            //para poder editarlo
-            dgvMovimientos.ReadOnly = false;
-            dgvMovimientos.AllowUserToAddRows = false;           
             // 
             // label1
             // 
@@ -107,6 +106,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(btnGuardar);
             groupBox2.Controls.Add(btnBorrar);
             groupBox2.Controls.Add(btnSalir);
             groupBox2.Controls.Add(btnAgregar);
@@ -139,6 +139,16 @@
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
             // 
+            // btnGuardar
+            // 
+            btnGuardar.Location = new Point(17, 215);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(75, 23);
+            btnGuardar.TabIndex = 15;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -168,5 +178,6 @@
         private GroupBox groupBox2;
         private Button btnBorrar;
         private Button btnSalir;
+        private Button btnGuardar;
     }
 }

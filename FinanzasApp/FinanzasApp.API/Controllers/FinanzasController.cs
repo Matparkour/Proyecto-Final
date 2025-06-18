@@ -48,5 +48,21 @@ namespace FinanzasApp.API.Controllers
 
             return NoContent();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] Movimiento movimiento)
+        {
+            var existente = await _context.Movimientos.FindAsync(id);
+            if (existente == null)
+                return NotFound();
+
+            existente.Descripcion = movimiento.Descripcion;
+            existente.Monto = movimiento.Monto;
+            existente.Tipo = movimiento.Tipo;
+            // Se puede mantener la fecha o permitir actualizarla también
+            existente.Fecha = movimiento.Fecha;
+
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }
