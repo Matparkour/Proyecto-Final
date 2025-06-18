@@ -9,62 +9,15 @@ namespace FinanzasApp.Desktop
         public Form1()
         {
             InitializeComponent();
-            //cbTipo.DropDownStyle = ComboBoxStyle.DropDownList;
-
-
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
 
 
-
-            //cbTipo.Items.Clear();
-            //cbTipo.Items.Add("Ingreso");
-            //cbTipo.Items.Add("Gasto");
-            //cbTipo.SelectedIndex = -1; 
-
             await CargarMovimientos();
 
         }
-
-        /*private async void btnGuardar_Click(object sender, EventArgs e)
-        {
-            // Validar que txtMonto tenga un número válido
-            if (!decimal.TryParse(txtMonto.Text, out decimal monto))
-            {
-                MessageBox.Show("Por favor ingresa un monto válido.");
-                return;
-            }
-
-            // Validar que se haya seleccionado un tipo
-            if (cbTipo.SelectedIndex == -1)
-            {
-                MessageBox.Show("Por favor selecciona un tipo (Ingreso o Gasto).");
-                return;
-            }
-
-            Movimiento mov = new Movimiento
-            {
-                Descripcion = txtDescripcion.Text,
-                Fecha = dtpFecha.Value,
-                Monto = monto,
-                Tipo = cbTipo.SelectedItem.ToString()
-            };
-
-            bool exito = await GuardarMovimientoAsync(mov);
-
-            if (exito)
-            {
-                MessageBox.Show("Movimiento guardado con éxito.");
-                LimpiarCampos();
-                await CargarMovimientos(); // <- recarga para que veas los movimientos en pantalla
-            }
-            else
-            {
-                MessageBox.Show("Error al guardar el movimiento.");
-            }
-        }*/
         public async Task<bool> GuardarMovimientoAsync(Movimiento movimiento)
         {
             using (HttpClient client = new HttpClient())
@@ -75,15 +28,7 @@ namespace FinanzasApp.Desktop
 
                 return response.IsSuccessStatusCode;
             }
-        }
-
-        /* private void LimpiarCampos()
-         {
-             txtDescripcion.Text = "";
-             txtMonto.Text = "";
-             cbTipo.SelectedIndex = -1;
-             dtpFecha.Value = DateTime.Now;
-         */
+        }      
 
         public async Task<List<Movimiento>> ObtenerMovimientosAsync()
         {
@@ -111,6 +56,13 @@ namespace FinanzasApp.Desktop
             dgvMovimientos.AutoGenerateColumns = true;
             dgvMovimientos.DataSource = lista;
             dgvMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// agregue esta linea para poder arreglar el problema de la data grid view
+
+            //columnas que no quiero editar
+            //if (dgvMovimientos.Columns["Id"] != null)
+              //  dgvMovimientos.Columns["Id"].ReadOnly = true;
+
+            //if (dgvMovimientos.Columns["Fecha"] != null)
+              //  dgvMovimientos.Columns["Fecha"].ReadOnly = true;
         }
 
         private async void btnAgregar_Click(object sender, EventArgs e)

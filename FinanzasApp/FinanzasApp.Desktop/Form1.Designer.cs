@@ -51,6 +51,9 @@
             dgvMovimientos.Size = new Size(611, 335);
             dgvMovimientos.TabIndex = 9;
             dgvMovimientos.CellContentClick += dgvMovimientos_CellContentClick;
+            //para poder editarlo
+            dgvMovimientos.ReadOnly = false;
+            dgvMovimientos.AllowUserToAddRows = false;           
             // 
             // label1
             // 

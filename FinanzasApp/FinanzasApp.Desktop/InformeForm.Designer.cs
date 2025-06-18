@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformeForm));
             cbMes = new ComboBox();
             nudAño = new NumericUpDown();
             btnGenerar = new Button();
@@ -162,6 +163,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(label3);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "InformeForm";
             Text = "InformeForm";
             Load += InformeForm_Load;
