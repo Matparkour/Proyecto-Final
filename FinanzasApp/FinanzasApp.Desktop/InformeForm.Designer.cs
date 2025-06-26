@@ -39,6 +39,7 @@
             btnSalir = new Button();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
+            btnDescargar = new Button();
             groupBox3 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)nudAño).BeginInit();
             groupBox1.SuspendLayout();
@@ -63,7 +64,7 @@
             // 
             // btnGenerar
             // 
-            btnGenerar.Location = new Point(62, 22);
+            btnGenerar.Location = new Point(62, 33);
             btnGenerar.Name = "btnGenerar";
             btnGenerar.Size = new Size(75, 23);
             btnGenerar.TabIndex = 2;
@@ -111,7 +112,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(62, 60);
+            btnSalir.Location = new Point(62, 91);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(75, 23);
             btnSalir.TabIndex = 7;
@@ -134,14 +135,25 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(btnDescargar);
             groupBox2.Controls.Add(btnGenerar);
             groupBox2.Controls.Add(btnSalir);
             groupBox2.Location = new Point(12, 169);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(200, 100);
+            groupBox2.Size = new Size(200, 139);
             groupBox2.TabIndex = 9;
             groupBox2.TabStop = false;
             groupBox2.Text = "Acciones";
+            // 
+            // btnDescargar
+            // 
+            btnDescargar.Location = new Point(62, 62);
+            btnDescargar.Name = "btnDescargar";
+            btnDescargar.Size = new Size(75, 23);
+            btnDescargar.TabIndex = 8;
+            btnDescargar.Text = "Descargar";
+            btnDescargar.UseVisualStyleBackColor = true;
+            btnDescargar.Click += btnDescargar_Click;
             // 
             // groupBox3
             // 
@@ -190,5 +202,6 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
+        private Button btnDescargar;
     }
 }

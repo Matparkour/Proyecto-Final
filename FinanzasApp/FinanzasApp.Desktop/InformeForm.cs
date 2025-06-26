@@ -1,4 +1,6 @@
 ﻿using FinanzasApp.API.Models;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +11,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace FinanzasApp.Desktop
 {
@@ -70,6 +73,43 @@ namespace FinanzasApp.Desktop
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnDescargar_Click(object sender, EventArgs e)
+        {
+            
+            string contenido = lblResultado.Text;
+
+            
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Archivo PDF (*.pdf)|*.pdf",
+                Title = "Guardar informe como PDF",
+                FileName = "InformeFinanzas.pdf"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    using (FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                    {
+                        Document pdfDoc = new Document(PageSize.A4, 25, 25, 30, 30);
+                        PdfWriter.GetInstance(pdfDoc, stream);
+                        pdfDoc.Open();
+                        pdfDoc.Add(new Paragraph(contenido));
+                        pdfDoc.Close();
+                        stream.Close();
+                    }
+
+                    MessageBox.Show("Informe descargado correctamente.", "Éxito");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al generar el PDF: " + ex.Message);
+                }
+            
+            }
         }
     }
 }
