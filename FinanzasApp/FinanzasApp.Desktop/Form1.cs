@@ -52,14 +52,14 @@ namespace FinanzasApp.Desktop
 
             dgvMovimientos.AutoGenerateColumns = true;
             dgvMovimientos.DataSource = lista;
-            dgvMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// agregue esta linea para poder arreglar el problema de la data grid view
+            dgvMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-            // Reemplazar la columna "Tipo" por un ComboBox si aún no es uno
+            
             if (dgvMovimientos.Columns["Tipo"] is DataGridViewTextBoxColumn)
             {
                 int index = dgvMovimientos.Columns["Tipo"].Index;
 
-                // Crear la nueva columna como ComboBox
+                
                 var comboCol = new DataGridViewComboBoxColumn
                 {
                     DataPropertyName = "Tipo",
@@ -132,7 +132,7 @@ namespace FinanzasApp.Desktop
             if (borrado)
             {
                 MessageBox.Show("Movimiento borrado correctamente.");
-                await CargarMovimientos(); // refresca el grid
+                await CargarMovimientos();
             }
             else
             {
